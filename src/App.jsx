@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Movies from './pages/Movies'
 import NotFound from './pages/NotFound'
 import MovieDetails from './pages/MovieDetails'
+import { PrivateRoute } from './components/PrivateRoute'
 
 function App() {
 
@@ -18,12 +19,19 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/movies" element={<Movies />} />
+        <Route
+          path="/movies"
+          element={
+            <PrivateRoute>
+              <Movies />
+            </PrivateRoute>
+          }
+        />
         <Route path="/movieDetails/:id" element={<MovieDetails />} />
         <Route path="/notfound" element={<NotFound />} />
       </Routes>
     </>
-  )
+  );
 }
 
 export default App
