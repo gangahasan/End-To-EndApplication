@@ -35,6 +35,22 @@ const Movies = () => {
     if(movies.length == 0){
         return <div>No movies found</div>
     }
+    const handleDelete=async(id)=>{ 
+        try{
+            const response = await axios.delete(`https://giddy-melon-lumber.glitch.me/movies/${id}`);
+            const updatedMovies = movies.filter((movie) => movie.id!== id);
+            setMovies(updatedMovies);
+            console.log("Deleted movie with id:", id);
+            if(response.status == 200){
+                alert("Movie deleted successfully");
+            }
+        }
+
+        catch(err){
+            console.error("Error deleting movie");
+        }
+
+    }
 
   return (
     <div>
@@ -54,6 +70,7 @@ const Movies = () => {
                     color: "white",
                     border: "none",
                   }}
+                  onClick={()=>navigate(`/edit-movie/${movie.id}`)}
                 >
                   Edit
                 </button>
@@ -63,6 +80,7 @@ const Movies = () => {
                     color: "white",
                     border: "none",
                   }}
+                  onClick={()=>handleDelete(movie.id)}
                 >
                   Delete
                 </button>

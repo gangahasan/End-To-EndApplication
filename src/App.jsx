@@ -10,6 +10,7 @@ import Movies from './pages/Movies'
 import NotFound from './pages/NotFound'
 import MovieDetails from './pages/MovieDetails'
 import { PrivateRoute } from './components/PrivateRoute'
+import EditMovie from './pages/EditMovie'
 
 function App() {
 
@@ -24,6 +25,14 @@ function App() {
           element={
             <PrivateRoute>
               <Movies />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/edit-movie/:id"
+          element={
+            <PrivateRoute>
+              <EditMovie />
             </PrivateRoute>
           }
         />
